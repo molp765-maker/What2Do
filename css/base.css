@@ -1,0 +1,12 @@
+/* Design tokens (light and dark), reset and global defaults */
+:root{--bg:#fbf8ef;--panel:#fff;--ink:#24102e;--mute:#7b6a86;--line:#eadfce;--side:#2a0a3a;--sideink:#e6d3ee;--sidemute:#9b7fae;--cream:#efe3b8;--acc:#8a2d7a;--accink:#fff;--hover:#f1ead8;--warm:#c98024;--ok:#2a8f84;--stage:var(--bg);box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#1a0a24;--panel:#230e30;--ink:#f2e9f5;--mute:#a590b3;--line:#35204a;--side:#12061a;--hover:#2d1840;--acc:#c35fb0;--accink:#1a0a24;--warm:#e9a84a;--ok:#4cc3b5}}
+:root[data-theme="dark"]{--bg:#1a0a24;--panel:#230e30;--ink:#f2e9f5;--mute:#a590b3;--line:#35204a;--side:#12061a;--hover:#2d1840;--acc:#c35fb0;--accink:#1a0a24;--warm:#e9a84a;--ok:#4cc3b5}
+body[data-view="diary"]{--stage:color-mix(in srgb,var(--bg),var(--warm) 10%)}
+*{box-sizing:border-box;margin:0}
+html,body{height:100%}
+body{font:14px/1.5 "DM Sans",system-ui,sans-serif;background:var(--stage);color:var(--ink);overflow:hidden;transition:background .3s}
+button,input,select{font:inherit;color:inherit}
+button{background:none;border:0;cursor:pointer}
+:focus-visible{outline:2px solid var(--acc);outline-offset:2px}
+svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;flex:none}

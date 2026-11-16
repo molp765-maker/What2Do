@@ -1,0 +1,24 @@
+/* App shell: sidebar, main area, page, grid, page typography */
+.app{display:grid;grid-template-columns:232px 1fr;height:100%}
+.side{background:var(--side);color:var(--sideink);display:flex;flex-direction:column;padding:16px 12px;gap:2px}
+.logo{display:flex;align-items:center;gap:10px;padding:4px 8px 16px;font:600 19px "Fraunces",serif;color:var(--cream)}
+.logo i{width:26px;height:26px;border-radius:8px;background:var(--cream);color:var(--side);display:grid;place-items:center;font:600 13px "Fraunces",serif}
+.nav{display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:8px;width:100%;text-align:left;color:var(--sideink)}
+.nav:hover{background:#ffffff14}
+.nav[aria-current=page]{background:#ffffff1f;color:#fff;font-weight:500}
+.nav .tag{margin-left:auto;font-size:11px;color:var(--sidemute)}
+.sep{height:1px;background:#ffffff14;margin:10px 8px;margin-top:auto}
+.me{display:flex;align-items:center;gap:10px;padding:6px 8px}
+.av{width:28px;height:28px;border-radius:50%;background:var(--acc);color:var(--accink);display:grid;place-items:center;font-weight:600;font-size:12px}
+.me small{color:var(--sidemute);display:block;line-height:1.2}
+.main{overflow:auto;height:100%}
+.page{max-width:1040px;margin:0 auto;padding:36px 36px 48px}
+h1{font:600 32px/1.1 "Fraunces",serif;letter-spacing:-.015em}
+.sub{color:var(--mute);margin:6px 0 28px}
+body[data-view="diary"] h1,body[data-view="diary"] .sub{font-family:"Fraunces",serif;font-style:italic;font-weight:500}
+.grid{display:grid;grid-template-columns:repeat(12,1fr);gap:14px}
+.tabs{display:none}
+.page.wide{max-width:1240px}
+.bar{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:12px 20px;margin-bottom:22px}
+.bar .sub{margin:4px 0 0}
+.tools{display:flex;flex-wrap:wrap;gap:8px;align-items:center}

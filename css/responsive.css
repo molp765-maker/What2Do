@@ -1,0 +1,10 @@
+/* Breakpoints (tablet 1000px, phone 700px) and reduced motion */
+@media (max-width:1000px){.app{grid-template-columns:64px 1fr}.nav span,.nav .tag,.logo b,.me div{display:none}.nav,.logo{justify-content:center}.card.t{grid-column:span 6}}
+@media (max-width:700px){
+.app{grid-template-columns:1fr;grid-template-rows:1fr auto}.side{display:none}.page{padding:20px 18px 32px}h1{font-size:26px}.card,.card.t{grid-column:span 12}
+.tabs{display:grid;grid-template-columns:repeat(6,1fr);background:var(--side);padding:6px 4px 8px}
+.tabs button{display:flex;flex-direction:column;align-items:center;gap:2px;font-size:10px;color:var(--sidemute);padding:4px 0;min-height:46px}
+.tabs button[aria-current=page]{color:var(--cream)}
+.row{flex-wrap:wrap}.in{min-width:0;width:100%}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+@media (max-width:700px){.cell{min-height:70px;padding:3px}.chip{font-size:0;height:5px;width:5px;padding:0;border-radius:50%;box-shadow:none;background:var(--cc);display:inline-block}.tl>*{min-width:640px}.two{grid-template-columns:1fr}}

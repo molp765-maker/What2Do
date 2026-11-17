@@ -66,12 +66,9 @@ const show=()=>location.hash!=='#diary'?(location.hash='diary'):emit('render');
 const monthOf=k=>{const x=pd(k);return new Date(x.getFullYear(),x.getMonth(),1)};
 
 /* ---------- events ---------- */
-<<<<<<< HEAD
 // Used by notification links: open today's (or another day's) entry in the editor.
 export async function writeFor(date){await settle();const t=diaryOn(date);startDraft(t.length?t[t.length-1]:null,date);show()}
 
-=======
->>>>>>> 485537a8f97ba35a1f8e8387d5d413df86e8589b
 export function bindDiary(){
 document.addEventListener('click',async e=>{
 const b=e.target.closest('[data-dytoday],[data-dyopen],[data-dynew],[data-dysel],[data-dycal],[data-dymore],[data-dyedit],[data-dyrm],[data-dyhome],[data-dydone],[data-dycancel],[data-dydel],[data-dymood],[data-dydate],[data-dyord],[data-go="diary"]');if(!b)return;const d=b.dataset;

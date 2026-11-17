@@ -11,8 +11,6 @@
 
 @media (max-width:1000px){.dy-cols{grid-template-columns:1fr}.dy-side{position:static}}
 @media (max-width:700px){.dy-title{font-size:28px}.dy-body,.dy-text{font-size:17px}.dy-body{min-height:45vh}.cell .dy{top:4px;right:4px}.dy-find .in{min-width:0;width:100%;flex-basis:100%}}
-<<<<<<< HEAD
-
 @media (max-width:1000px){.npop{left:72px}.nbell .nbadge{position:absolute;top:2px;right:8px;margin:0}}
 @media (max-width:700px){
 .page{padding-top:58px}
@@ -20,5 +18,3 @@
 .nbell-m .nbadge{position:absolute;top:-4px;right:-4px;margin:0}
 .npop{left:8px;right:8px;top:calc(56px + env(safe-area-inset-top,0px));width:auto}
 .ntoasts{bottom:76px;right:8px;left:8px;width:auto}}
-=======
->>>>>>> 485537a8f97ba35a1f8e8387d5d413df86e8589b

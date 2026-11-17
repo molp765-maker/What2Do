@@ -8,8 +8,6 @@ Personal planner. Get in touch with past, present and future.
 - Autosave runs 800 ms after you stop typing and writes by `id`, so repeated saves update one record. Cancel restores the entry as it was when the editor opened (or removes a brand-new one).
 - The calendar shows a hollow amber ring on days with an entry, and the day view has a Write or Open diary button.
 - Privacy: entries never leave the device, nothing is logged, and no AI or network code reads them.
-<<<<<<< HEAD
-
 ## Notifications (Phase 4)
 
     js/notifications/
@@ -28,5 +26,3 @@ Personal planner. Get in touch with past, present and future.
 - **What works:** in-app notifications while the app is open; browser notifications while the page or installed app is running.
 - **What does not:** nothing can reach you while the app is closed. That needs Web Push (a server, VAPID keys, a stored push subscription). It is not built.
 - Browser notifications need HTTPS or `localhost`.
-=======
->>>>>>> 485537a8f97ba35a1f8e8387d5d413df86e8589b

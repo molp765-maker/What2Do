@@ -5,24 +5,18 @@ import {S} from './storage/store.js';
 import {Router, render} from './router.js';
 import {bindEvents} from './controller.js';
 import {bindDiary} from './features/diary.js';
-<<<<<<< HEAD
 import {bindCenter, openNotification, updateBadge} from './notifications/center.js';
 import {bindNotifySettings} from './notifications/settings-view.js';
 import {startScheduler} from './notifications/scheduler.js';
 import {openRelated} from './links.js';
-=======
->>>>>>> 485537a8f97ba35a1f8e8387d5d413df86e8589b
 
 on('render',render);
 on('open-related',openRelated);
 theme();
 bindEvents();
 bindDiary();
-<<<<<<< HEAD
 bindCenter();
 bindNotifySettings();
-=======
->>>>>>> 485537a8f97ba35a1f8e8387d5d413df86e8589b
 addEventListener('hashchange',()=>Router.go());
 S.load().catch(e=>{S.err=e.message}).finally(()=>{Router.go();updateBadge();startScheduler();launch()});
 // Opened from a system notification (cold start) or told to by the service worker (page already open)

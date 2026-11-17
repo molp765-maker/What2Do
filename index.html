@@ -15,11 +15,13 @@
 </head>
 <body>
 <div class="app">
-<aside class="side"><div class="logo"><i>2</i><b>What 2 Do</b></div><nav id="nav" aria-label="Main"></nav>
+<aside class="side"><div class="logo"><i>2</i><b>What 2 Do</b></div><button class="nav nbell" data-bell aria-haspopup="dialog" aria-expanded="false" aria-label="Notifications"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 17h12l-1.5-2V11a4.5 4.5 0 00-9 0v4zM10 20a2 2 0 004 0"/></svg><span>Notifications</span><i class="nbadge" hidden></i></button><nav id="nav" aria-label="Main"></nav>
 <div class="sep"></div><div class="me"><span class="av" id="av">M</span><div id="who"></div></div></aside>
 <main class="main" id="main" tabindex="-1"></main>
 <nav class="tabs" id="tabs" aria-label="Main"></nav>
 </div>
+<button class="nbell nbell-m" data-bell aria-haspopup="dialog" aria-expanded="false" aria-label="Notifications"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 17h12l-1.5-2V11a4.5 4.5 0 00-9 0v4zM10 20a2 2 0 004 0"/></svg><i class="nbadge" hidden></i></button>
+<div id="npop" class="npop" role="dialog" aria-label="Notifications" hidden></div>
 <dialog id="dlg" aria-label="Edit"></dialog>
 <noscript>What 2 Do needs JavaScript.</noscript>
 <script type="module" src="js/app.js"></script>

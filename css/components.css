@@ -85,3 +85,81 @@ dialog h3{font:600 20px "Fraunces",serif;margin-bottom:12px}
 .acts{display:flex;gap:8px;margin-top:6px}
 .acts span{flex:1}
 .err{color:#e5484d;font-size:13px;min-height:18px}
+
+/* Diary (Phase 3) */
+.cell{position:relative}
+.dy{position:absolute;top:9px;right:9px;width:9px;height:9px;border-radius:50%;border:1.6px solid var(--warm)}
+.dy:hover{background:var(--warm)}
+.tlh .dyd{display:inline-block;width:7px;height:7px;border-radius:50%;border:1.5px solid var(--warm);margin-left:4px}
+.dy-cols{display:grid;grid-template-columns:minmax(0,1fr) 320px;gap:28px;align-items:start}
+.dy-side{position:sticky;top:20px}
+.dy-find{display:flex;flex-wrap:wrap;gap:8px}
+.dy-find .in{flex:1;width:auto;min-width:180px}.dy-find select.in{flex:0 0 auto;min-width:0}
+.dy-count{color:var(--mute);font-size:13px;margin-top:14px}
+.dy-row{display:flex;gap:14px;width:100%;text-align:left;padding:12px 8px;align-items:flex-start;border-radius:8px}
+.dy-row+.dy-row{border-top:1px solid var(--line);border-radius:0}.dy-row:hover{background:var(--hover)}
+.dy-day{width:40px;text-align:center;flex:none}.dy-day b{display:block;font:600 20px/1.1 "Fraunces",serif}.dy-day i{font-style:normal;font-size:11px;color:var(--mute)}
+.dy-rb{flex:1;min-width:0}.dy-t{display:block;font:600 16px "Fraunces",serif}
+.dy-p{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;color:var(--mute);font-size:13.5px}
+mark{background:color-mix(in srgb,var(--warm) 35%,transparent);color:inherit;border-radius:3px}
+.dy-more{margin:14px auto;display:flex}
+.dy-empty{text-align:center;padding:56px 12px}.dy-empty h2{font:600 24px "Fraunces",serif;margin-bottom:6px}.dy-empty p{color:var(--mute);max-width:360px;margin:0 auto 18px}
+.dy-cal{padding:14px;min-height:0}
+.dy-mh{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}.dy-mh .btn{width:34px;padding:0}
+.dy-g{display:grid;grid-template-columns:repeat(7,1fr);text-align:center;row-gap:2px}.dy-g i{font-style:normal;font-size:11px;color:var(--mute);padding-bottom:4px}
+.dy-d{height:38px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px;border-radius:10px}
+.dy-d span{width:26px;height:26px;display:grid;place-items:center;border-radius:50%;font-size:13px}
+.dy-d.out{opacity:.4}.dy-d:hover{background:var(--hover)}
+.dy-d.today span{box-shadow:inset 0 0 0 1.5px var(--acc)}.dy-d[aria-pressed=true] span{background:var(--acc);color:var(--accink);box-shadow:none}
+.dy-d .dd{width:5px;height:5px;border-radius:50%;background:var(--warm)}
+.dy-ed,.dy-read{max-width:720px}
+.dy-bar{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:28px}
+.dy-st{font-size:13px;color:var(--mute)}.dy-st[data-s=err]{color:#e5484d}
+.dy-date{display:flex;align-items:center;gap:10px;color:var(--mute);margin-bottom:6px;flex-wrap:wrap}
+.dy-date input{border:0;background:var(--hover);border-radius:6px;padding:2px 8px;color:inherit;font:inherit}
+.dy-title{width:100%;border:0;background:none;outline:0;font:600 36px/1.2 "Fraunces",serif;letter-spacing:-.015em;color:var(--ink);padding:4px 0;margin-bottom:10px;border-radius:2px}
+.dy-title:focus-visible{box-shadow:0 1px 0 var(--acc)}
+.dy-title::placeholder,.dy-body::placeholder{color:color-mix(in srgb,var(--mute) 65%,transparent)}
+.dy-mood{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:22px}
+.dy-mood button{padding:4px 12px;border-radius:20px;border:1px solid var(--line);font-size:13px;color:var(--mute)}
+.dy-mood button[aria-pressed=true]{background:var(--hover);border-color:var(--warm);color:var(--ink)}
+.dy-body{display:block;width:100%;min-height:50vh;border:0;background:none;outline:0;resize:none;font:18px/1.8 "Fraunces",Georgia,serif;color:var(--ink)}
+.dy-foot{position:sticky;bottom:0;padding:12px 0;color:var(--mute);font-size:13px;background:linear-gradient(transparent,var(--stage) 40%)}
+.dy-meta{color:var(--mute)}.dy-h{margin:6px 0 22px}.dy-text{white-space:pre-wrap;overflow-wrap:anywhere;font:18px/1.8 "Fraunces",Georgia,serif}
+
+/* Notifications (Phase 4) */
+.nbell{position:relative}
+.nbadge{margin-left:auto;min-width:18px;height:18px;padding:0 5px;border-radius:9px;background:#e5484d;color:#fff;font:600 11px/18px "DM Sans",sans-serif;text-align:center;font-style:normal}
+.nbadge[hidden]{display:none}
+.nbell-m{display:none}
+.npop{position:fixed;left:244px;top:12px;z-index:30;width:392px;max-width:calc(100vw - 16px);max-height:min(640px,calc(100vh - 24px));display:flex;flex-direction:column;background:var(--panel);color:var(--ink);border:1px solid var(--line);border-radius:14px;box-shadow:0 12px 40px #1a0a2455;overflow:hidden;animation:nin .16s ease-out}
+.npop[hidden]{display:none}
+.nh{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:12px 14px;border-bottom:1px solid var(--line)}
+.nh .na{display:flex;gap:6px}
+.btn.sm{height:28px;padding:0 9px;font-size:12.5px}
+.nl{overflow:auto;padding:4px 0}
+.ng{padding:10px 14px 4px;font-size:12px;font-weight:600;color:var(--mute)}
+.ni{display:flex;align-items:flex-start;gap:4px;padding-right:8px;position:relative}
+.ni:hover{background:var(--hover)}
+.ni.unread:before{content:"";position:absolute;left:6px;top:19px;width:6px;height:6px;border-radius:50%;background:var(--acc)}
+.nb{flex:1;min-width:0;text-align:left;padding:10px 6px 10px 20px;display:grid;gap:1px}
+.nb b{font-weight:600;font-size:13.5px}.ni:not(.unread) .nb b{font-weight:500}
+.nm{color:var(--mute);font-size:13px;overflow-wrap:anywhere}
+.nb time{color:var(--mute);font-size:11.5px}
+.nc{font-size:11px;font-weight:600;color:var(--cc)}
+.nx{display:flex;flex-direction:column;opacity:0;padding-top:6px}.ni:hover .nx,.ni:focus-within .nx{opacity:1}
+.nx button{width:26px;height:26px;display:grid;place-items:center;border-radius:6px;color:var(--mute)}.nx button:hover{background:var(--line)}.nx svg{width:14px;height:14px}
+.nbn{margin:8px 12px;padding:12px;border:1px solid var(--line);border-radius:10px;background:var(--bg);display:grid;gap:6px;font-size:13px}.nbn span{color:var(--mute)}.nbn .row2{display:flex;gap:8px}
+.nempty{padding:34px 20px;text-align:center;color:var(--mute)}.nempty b{display:block;color:var(--ink);font:600 16px "Fraunces",serif;margin-bottom:4px}
+.ntoasts{position:fixed;right:16px;bottom:16px;z-index:40;display:grid;gap:8px;width:min(340px,calc(100vw - 32px))}
+.nt{display:flex;align-items:flex-start;background:var(--panel);color:var(--ink);border:1px solid var(--line);border-radius:12px;box-shadow:0 8px 28px #1a0a2455;animation:nin .22s ease-out}
+.nt>button:first-child{flex:1;text-align:left;padding:10px 4px 10px 14px;display:grid;gap:1px}.nt b{font-size:13.5px}.nt span{color:var(--mute);font-size:13px}
+.nt>button+button{width:32px;height:32px;display:grid;place-items:center;color:var(--mute);flex:none}
+.sw{position:relative;display:inline-block;width:38px;height:22px;flex:none}.sw input{position:absolute;inset:0;opacity:0;margin:0;cursor:pointer;z-index:1}
+.sw i{position:absolute;inset:0;border-radius:11px;background:var(--line);transition:background .18s;pointer-events:none}
+.sw i:after{content:"";position:absolute;top:3px;left:3px;width:16px;height:16px;border-radius:50%;background:#fff;transition:transform .18s}
+.sw input:checked+i{background:var(--acc)}.sw input:checked+i:after{transform:translateX(16px)}.sw input:focus-visible+i{outline:2px solid var(--acc);outline-offset:2px}
+.days{display:flex;gap:4px;flex-wrap:wrap}.days button{width:40px;height:30px;border-radius:8px;border:1px solid var(--line);font-size:12.5px;color:var(--mute)}.days button[aria-pressed=true]{background:var(--acc);border-color:var(--acc);color:var(--accink)}
+.rc[hidden],.rt[hidden]{display:none}
+.how{font-size:13px;color:var(--mute);display:grid;gap:6px;margin-top:10px}
+@keyframes nin{from{transform:translateY(6px);opacity:0}}

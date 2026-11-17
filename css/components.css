@@ -126,6 +126,7 @@ mark{background:color-mix(in srgb,var(--warm) 35%,transparent);color:inherit;bor
 .dy-body{display:block;width:100%;min-height:50vh;border:0;background:none;outline:0;resize:none;font:18px/1.8 "Fraunces",Georgia,serif;color:var(--ink)}
 .dy-foot{position:sticky;bottom:0;padding:12px 0;color:var(--mute);font-size:13px;background:linear-gradient(transparent,var(--stage) 40%)}
 .dy-meta{color:var(--mute)}.dy-h{margin:6px 0 22px}.dy-text{white-space:pre-wrap;overflow-wrap:anywhere;font:18px/1.8 "Fraunces",Georgia,serif}
+<<<<<<< HEAD
 
 /* Notifications (Phase 4) */
 .nbell{position:relative}
@@ -163,3 +164,5 @@ mark{background:color-mix(in srgb,var(--warm) 35%,transparent);color:inherit;bor
 .rc[hidden],.rt[hidden]{display:none}
 .how{font-size:13px;color:var(--mute);display:grid;gap:6px;margin-top:10px}
 @keyframes nin{from{transform:translateY(6px);opacity:0}}
+=======
+>>>>>>> 485537a8f97ba35a1f8e8387d5d413df86e8589b

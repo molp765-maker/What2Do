@@ -2,8 +2,11 @@
 import {ic} from '../core/icons.js';
 import {TODAY, addD, dShort, esc, hm, mon, t12, today, uid, ymd} from '../core/utils.js';
 import {col} from '../core/config.js';
+<<<<<<< HEAD
 import {remindField, readRemind, wireRemind} from '../notifications/forms.js';
 import {getNP} from '../notifications/prefs.js';
+=======
+>>>>>>> 485537a8f97ba35a1f8e8387d5d413df86e8589b
 import {S, diaryDays, evOn, tkOn} from '../storage/store.js';
 import {catO, chip, dlg, errCard, fld, opts, tchip} from '../ui/components.js';
 

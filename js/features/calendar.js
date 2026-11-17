@@ -2,20 +2,21 @@
 import {ic} from '../core/icons.js';
 import {TODAY, addD, dShort, esc, hm, mon, t12, today, uid, ymd} from '../core/utils.js';
 import {col} from '../core/config.js';
-import {S, evOn, tkOn} from '../storage/store.js';
+import {S, diaryDays, evOn, tkOn} from '../storage/store.js';
 import {catO, chip, dlg, errCard, fld, opts, tchip} from '../ui/components.js';
 
+const dyBtn=k=>`<button class="btn" data-dydate="${k}">${diaryDays().has(k)?'Open diary entry':'Write diary entry'}</button>`;
 export const C={view:'month',d:new Date(today)};
 export function calView(){const v=C.d,w=C.view,r=a=>a.toLocaleDateString('en-NZ',{day:'numeric',month:'short'});
 const title=w==='month'?v.toLocaleDateString('en-NZ',{month:'long',year:'numeric'}):w==='day'?v.toLocaleDateString('en-NZ',{weekday:'long',day:'numeric',month:'long'}):r(mon(v))+' to '+r(addD(mon(v),6));
-return `<div class="page wide"><div class="bar"><h1>${title}</h1><div class="tools"><div class="seg" role="group" aria-label="View">${['day','week','month'].map(x=>`<button data-cv="${x}" aria-pressed="${x===w}">${x[0].toUpperCase()+x.slice(1)}</button>`).join('')}</div><button class="btn" data-cal="-1" aria-label="Previous">${ic('l')}</button><button class="btn" data-cal="0">Today</button><button class="btn" data-cal="1" aria-label="Next">${ic('r')}</button><button class="btn pri" data-newev>New event</button></div></div>${S.err?errCard():''}${w==='month'?monthV():tlV(w==='day'?[v]:Array.from({length:7},(_,i)=>addD(mon(v),i)))}</div>`}
-function monthV(){const f=new Date(C.d.getFullYear(),C.d.getMonth(),1),s=mon(f);
+return `<div class="page wide"><div class="bar"><h1>${title}</h1><div class="tools"><div class="seg" role="group" aria-label="View">${['day','week','month'].map(x=>`<button data-cv="${x}" aria-pressed="${x===w}">${x[0].toUpperCase()+x.slice(1)}</button>`).join('')}</div><button class="btn" data-cal="-1" aria-label="Previous">${ic('l')}</button><button class="btn" data-cal="0">Today</button><button class="btn" data-cal="1" aria-label="Next">${ic('r')}</button>${w==='day'?dyBtn(ymd(v)):''}<button class="btn pri" data-newev>New event</button></div></div>${S.err?errCard():''}${w==='month'?monthV():tlV(w==='day'?[v]:Array.from({length:7},(_,i)=>addD(mon(v),i)))}</div>`}
+function monthV(){const dd=diaryDays(),f=new Date(C.d.getFullYear(),C.d.getMonth(),1),s=mon(f);
 let h='<div class="month">'+['Mon','Tue','Wed','Thu','Fri','Sat','Sun'].map(x=>`<div class="dow">${x}</div>`).join('');
 for(let i=0;i<42;i++){const d=addD(s,i),k=ymd(d),it=[...evOn(k).map(chip),...tkOn(k).map(tchip)];
-h+=`<div class="cell ${i%7>4?'we':''} ${d.getMonth()!==f.getMonth()?'out':''} ${k===TODAY?'today':''}" data-date="${k}"><button class="n" data-day="${k}" aria-label="Open ${dShort(k)}">${d.getDate()}</button>${it.slice(0,3).join('')}${it.length>3?`<button class="more" data-day="${k}">+${it.length-3} more</button>`:''}</div>`}
+h+=`<div class="cell ${i%7>4?'we':''} ${d.getMonth()!==f.getMonth()?'out':''} ${k===TODAY?'today':''}" data-date="${k}"><button class="n" data-day="${k}" aria-label="Open ${dShort(k)}">${d.getDate()}</button>${dd.has(k)?`<button class="dy" data-dydate="${k}" title="Diary entry" aria-label="Open diary entry for ${dShort(k)}"></button>`:''}${it.slice(0,3).join('')}${it.length>3?`<button class="more" data-day="${k}">+${it.length-3} more</button>`:''}</div>`}
 return h+'</div>'}
-function tlV(days){const g=`52px repeat(${days.length},minmax(0,1fr))`;
-let h=`<div class="tl"><div class="tlh" style="grid-template-columns:${g}"><div></div>${days.map(d=>`<button class="${ymd(d)===TODAY?'today':''}" data-day="${ymd(d)}">${d.toLocaleDateString('en-NZ',{weekday:'short'})}<b>${d.getDate()}</b></button>`).join('')}</div>`;
+function tlV(days){const dd=diaryDays(),g=`52px repeat(${days.length},minmax(0,1fr))`;
+let h=`<div class="tl"><div class="tlh" style="grid-template-columns:${g}"><div></div>${days.map(d=>`<button class="${ymd(d)===TODAY?'today':''}" data-day="${ymd(d)}">${d.toLocaleDateString('en-NZ',{weekday:'short'})}<b>${d.getDate()}</b>${dd.has(ymd(d))?'<i class="dyd" title="Diary entry"></i>':''}</button>`).join('')}</div>`;
 h+=`<div class="tlh ad" style="grid-template-columns:${g}"><div>All day</div>${days.map(d=>{const k=ymd(d);return `<div>${evOn(k).filter(e=>!e.start).map(chip).join('')}${tkOn(k).map(tchip).join('')}</div>`}).join('')}</div>`;
 h+=`<div class="tb" style="grid-template-columns:${g}"><div class="hrs">${Array.from({length:18},(_,i)=>`<div>${i?t12(String(6+i).padStart(2,'0')+':00'):''}</div>`).join('')}</div>`;
 days.forEach(d=>{const k=ymd(d),L=[],es=evOn(k).filter(e=>e.start).map(e=>({e,s:hm(e.start),f:e.end?hm(e.end):hm(e.start)+1}));

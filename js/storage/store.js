@@ -2,7 +2,7 @@
 import {DB} from './db.js';
 import {addD, pd, ymd} from '../core/utils.js';
 
-export const S={events:[],tasks:[],err:'',async load(){await DB.open();[this.events,this.tasks]=await Promise.all([DB.all('events'),DB.all('tasks')])},
+export const S={events:[],tasks:[],diary:[],err:'',async load(){await DB.open();[this.events,this.tasks,this.diary]=await Promise.all([DB.all('events'),DB.all('tasks'),DB.all('diary')])},
 async save(k,v){await DB.put(k,v);const a=S[k],i=a.findIndex(x=>x.id===v.id);i<0?a.push(v):a[i]=v},
 async remove(k,id){await DB.del(k,id);S[k]=S[k].filter(x=>x.id!==id)}};
 const occursOn=(e,ds)=>ds>=e.date&&(e.repeatDays?.length?ds<=e.repeatUntil&&e.repeatDays.includes(pd(ds).getDay()):ds===e.date);
@@ -20,3 +20,5 @@ date=ymd(addD(pd(date),1))
 return events.sort((a,b)=>a.date===b.date?byTime(a,b):a.date<b.date?-1:1).slice(0,limit)
 },tkOn=ds=>S.tasks.filter(t=>t.due===ds);
 export const cmp=(a,b)=>(a.date+(a.start||''))<(b.date+(b.start||''))?-1:1,tcmp=(a,b)=>((a.pri||2)-(b.pri||2))||((a.due||'9')<(b.due||'9')?-1:1);
+export const diaryOn=ds=>S.diary.filter(e=>e.date===ds).sort((a,b)=>(a.createdAt||'')<(b.createdAt||'')?-1:1);
+export const diaryDays=()=>new Set(S.diary.map(e=>e.date));

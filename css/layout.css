@@ -18,6 +18,28 @@ h1{font:600 32px/1.1 "Fraunces",serif;letter-spacing:-.015em}
 body[data-view="diary"] h1,body[data-view="diary"] .sub{font-family:"Fraunces",serif;font-style:italic;font-weight:500}
 .grid{display:grid;grid-template-columns:repeat(12,1fr);gap:14px}
 .tabs{display:none}
+.auth-page{min-height:100%;display:grid;place-items:center;padding:32px 18px;background:radial-gradient(ellipse at 50% 0%,color-mix(in srgb,var(--warm) 14%,var(--bg)),var(--bg) 65%)}
+.auth-shell{width:min(100%,420px)}
+.auth-brand{display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:26px;font:600 20px "Fraunces",serif}
+.auth-brand i{width:30px;height:30px;border-radius:9px;background:var(--side);color:var(--cream);display:grid;place-items:center;font:600 15px "Fraunces",serif}
+.auth-card{padding:30px;background:var(--panel);border:1px solid var(--line);border-radius:18px;box-shadow:0 16px 48px #2a0a3a12}
+.auth-eyebrow{font-size:11px;font-weight:600;letter-spacing:.14em;color:var(--warm);margin-bottom:8px}
+.auth-card h1{font-size:30px}
+.auth-copy{color:var(--mute);margin:8px 0 24px}
+.auth-card .f input{height:42px;min-width:0;width:100%}
+.auth-submit{width:100%;height:42px;margin-top:8px}
+.auth-submit:disabled{opacity:.55;cursor:not-allowed}
+.auth-status{text-align:center;margin-top:10px}
+.auth-switch{text-align:center;color:var(--mute);margin-top:16px}
+.auth-switch button{color:var(--acc);font-weight:600}
+.auth-switch button:hover{text-decoration:underline}
+.auth-note{text-align:center;color:var(--mute);font-size:12px;margin:18px 0 0}
+.auth-unavailable{display:grid;gap:6px;padding:14px;border:1px solid var(--line);border-radius:10px;background:var(--bg)}
+.auth-unavailable span{font-size:13px;color:var(--mute)}
+body[data-view="auth"]{overflow:hidden}
+body[data-view="auth"] .app{display:block}
+body[data-view="auth"] .main{height:100%;overflow:auto}
+body[data-view="auth"] .side,body[data-view="auth"] .tabs,body[data-view="auth"] .nbell,body[data-view="auth"] .npop{display:none}
 .page.wide{max-width:1240px}
 .bar{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:12px 20px;margin-bottom:22px}
 .bar .sub{margin:4px 0 0}

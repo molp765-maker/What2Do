@@ -7,7 +7,20 @@ Personal planner. Get in touch with past, present and future.
 - Entries live in the existing `diary` IndexedDB store: `{id, title, content, date, mood, createdAt, updatedAt}`. `date` is a local `YYYY-MM-DD`, the same format events and tasks use.
 - Autosave runs 800 ms after you stop typing and writes by `id`, so repeated saves update one record. Cancel restores the entry as it was when the editor opened (or removes a brand-new one).
 - The calendar shows a hollow amber ring on days with an entry, and the day view has a Write or Open diary button.
-- Privacy: entries never leave the device, nothing is logged, and no AI or network code reads them.
+- Privacy: while signed out, entries stay on the device. When signed in to cloud sync, events, tasks, and diary entries are stored in the user's Supabase account. Notification settings and appearance preferences remain device-local; notification history is cleared when signing out.
+
+## Cross-device accounts
+
+After Supabase is configured, the app opens on a sign-in page. Returning users with a saved session go straight to the planner; signing out returns to sign-in. The app syncs events, tasks, and diary entries between devices with Supabase email/password accounts. Each person should create and use their own account; row-level security keeps account data private. Changes sync when saved and are refreshed on app launch, when the app returns to the foreground, and about every 30 seconds while it is open. An internet connection is required for cloud sync; pending edits are kept locally and retried.
+
+To enable it:
+
+1. Create a Supabase project.
+2. Run [`supabase/schema.sql`](./supabase/schema.sql) in the project's SQL Editor.
+3. Copy the project URL and **publishable/anon key** into [`js/core/cloud-config.js`](./js/core/cloud-config.js). Never put a `service_role` key in browser code.
+4. Host the app over HTTPS, create an account from the sign-in page, and use that same account on each device. If email confirmation is enabled, confirm the signup message first.
+
+The first sign-in to an account with no cloud data asks whether to import the current device's events, tasks, and diary. Existing cloud data replaces the current device's cached copy. Signing out clears that account's cached planner data from the device but leaves the cloud copy intact. Do not use real or sensitive data until the Supabase project and its access policies are configured.
 ## Notifications (Phase 4)
 
     js/notifications/

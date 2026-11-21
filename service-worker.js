@@ -1,6 +1,6 @@
 // Offline app shell. Network first, so edits show up during development; cache is the fallback.
 // Phase 4 will extend this file with notification handling.
-const VERSION = 'w2d-v4';
+const VERSION = 'w2d-v7';
 const SHELL = [
   "./assets/icons/icon.svg",
   "./css/base.css",
@@ -12,11 +12,13 @@ const SHELL = [
   "./js/controller.js",
   "./js/core/bus.js",
   "./js/core/config.js",
+  "./js/core/cloud-config.js",
   "./js/core/diary.js",
   "./js/core/icons.js",
   "./js/core/theme.js",
   "./js/core/utils.js",
   "./js/features/calendar.js",
+  "./js/features/auth.js",
   "./js/features/diary.js",
   "./js/features/home.js",
   "./js/features/placeholders.js",
@@ -32,6 +34,7 @@ const SHELL = [
   "./js/notifications/settings-view.js",
   "./js/router.js",
   "./js/storage/db.js",
+  "./js/storage/cloud.js",
   "./js/storage/prefs.js",
   "./js/storage/store.js",
   "./js/ui/components.js",

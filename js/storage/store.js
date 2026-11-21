@@ -2,10 +2,11 @@
 import {DB} from './db.js';
 import {emit} from '../core/bus.js';
 import {addD, pd, ymd} from '../core/utils.js';
+import {Cloud} from './cloud.js';
 
 export const S={events:[],tasks:[],diary:[],notifications:[],err:'',async load(){await DB.open();[this.events,this.tasks,this.diary,this.notifications]=await Promise.all([DB.all('events'),DB.all('tasks'),DB.all('diary'),DB.all('notifications')])},
-async save(k,v){await DB.put(k,v);const a=S[k],i=a.findIndex(x=>x.id===v.id);i<0?a.push(v):a[i]=v;if(k!=='notifications')emit('data:changed')},
-async remove(k,id){await DB.del(k,id);S[k]=S[k].filter(x=>x.id!==id);if(k!=='notifications')emit('data:changed')}};
+async save(k,v){await DB.put(k,v);const a=S[k],i=a.findIndex(x=>x.id===v.id);i<0?a.push(v):a[i]=v;if(k!=='notifications'){await Cloud.saveRecord(k,v);emit('data:changed')}},
+async remove(k,id){await DB.del(k,id);S[k]=S[k].filter(x=>x.id!==id);if(k!=='notifications'){await Cloud.deleteRecord(k,id);emit('data:changed')} }};
 const occursOn=(e,ds)=>ds>=e.date&&(e.repeatDays?.length?ds<=e.repeatUntil&&e.repeatDays.includes(pd(ds).getDay()):ds===e.date);
 const byTime=(a,b)=>(a.start||'')<(b.start||'')?-1:1;
 export const evOn=ds=>S.events.filter(e=>occursOn(e,ds)).map(e=>({...e,date:ds})).sort(byTime),

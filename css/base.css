@@ -1,12 +1,14 @@
-/* Design tokens (light and dark), reset and global defaults */
-:root{--bg:#fbf8ef;--panel:#fff;--ink:#24102e;--mute:#7b6a86;--line:#eadfce;--side:#2a0a3a;--sideink:#e6d3ee;--sidemute:#9b7fae;--cream:#efe3b8;--acc:#8a2d7a;--accink:#fff;--hover:#f1ead8;--warm:#c98024;--ok:#2a8f84;--stage:var(--bg);box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#1a0a24;--panel:#230e30;--ink:#f2e9f5;--mute:#a590b3;--line:#35204a;--side:#12061a;--hover:#2d1840;--acc:#c35fb0;--accink:#1a0a24;--warm:#e9a84a;--ok:#4cc3b5}}
-:root[data-theme="dark"]{--bg:#1a0a24;--panel:#230e30;--ink:#f2e9f5;--mute:#a590b3;--line:#35204a;--side:#12061a;--hover:#2d1840;--acc:#c35fb0;--accink:#1a0a24;--warm:#e9a84a;--ok:#4cc3b5}
-body[data-view="diary"]{--stage:color-mix(in srgb,var(--bg),var(--warm) 10%)}
+/* Design tokens (plum theme), reset and global defaults */
+:root{--plum:#500071;--deep:#2a0044;--magenta:#8a2a78;--lilac:#e0aaf0;--cream:#efe3b8;--cream2:#fbf4d8;
+--bg:#fbf4d8;--panel:#efe3b8;--ink:#2a0044;--mute:#6a2f7e;--line:#d9c98f;--acc:#8a2a78;--accink:#efe3b8;--hover:#e6d9a8;--warm:#b8741a;--ok:#2a8f84;--bad:#e5312f;--stage:var(--bg);
+box-sizing:border-box}
 *{box-sizing:border-box;margin:0}
+[hidden]{display:none!important}
 html,body{height:100%}
-body{font:14px/1.5 "DM Sans",system-ui,sans-serif;background:var(--stage);color:var(--ink);overflow:hidden;transition:background .3s}
-button,input,select{font:inherit;color:inherit}
-button{background:none;border:0;cursor:pointer}
-:focus-visible{outline:2px solid var(--acc);outline-offset:2px}
+body{font:14px/1.5 "Poppins",system-ui,sans-serif;background:#500071;color:var(--ink);overflow:hidden}
+button,input,select,textarea{font:inherit;color:inherit}
+button{background:none;border:0;cursor:pointer;padding:0}
+:focus-visible{outline:2px solid var(--lilac);outline-offset:2px}
+.card :focus-visible,dialog :focus-visible,.npop :focus-visible,.pmenu :focus-visible{outline-color:var(--acc)}
 svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;flex:none}
+@media (prefers-reduced-motion:reduce){*,*:before,*:after{transition:none!important;animation:none!important}}

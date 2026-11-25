@@ -1,12 +1,15 @@
 // Offline app shell. Network first, so edits show up during development; cache is the fallback.
 // Phase 4 will extend this file with notification handling.
-const VERSION = 'w2d-v7';
+const VERSION = 'w2d-v8';
 const SHELL = [
   "./assets/icons/icon.svg",
   "./css/base.css",
   "./css/components.css",
   "./css/layout.css",
   "./css/responsive.css",
+  "./css/theme.css",
+  "./assets/images/logo.png",
+  "./assets/images/wallpaper.jpg",
   "./index.html",
   "./js/app.js",
   "./js/controller.js",
@@ -15,12 +18,15 @@ const SHELL = [
   "./js/core/cloud-config.js",
   "./js/core/diary.js",
   "./js/core/icons.js",
-  "./js/core/theme.js",
   "./js/core/utils.js",
   "./js/features/calendar.js",
   "./js/features/auth.js",
   "./js/features/diary.js",
+  "./js/features/friend-data.js",
+  "./js/features/friends.js",
   "./js/features/home.js",
+  "./js/features/plans.js",
+  "./js/features/schedule.js",
   "./js/features/placeholders.js",
   "./js/features/settings.js",
   "./js/features/tasks.js",
@@ -38,6 +44,7 @@ const SHELL = [
   "./js/storage/prefs.js",
   "./js/storage/store.js",
   "./js/ui/components.js",
+  "./js/ui/shell.js",
   "./js/views.js",
   "./manifest.webmanifest",
   "./"

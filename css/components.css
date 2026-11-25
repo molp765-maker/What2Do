@@ -131,7 +131,7 @@ mark{background:color-mix(in srgb,var(--warm) 35%,transparent);color:inherit;bor
 .nbadge{margin-left:auto;min-width:18px;height:18px;padding:0 5px;border-radius:9px;background:#e5484d;color:#fff;font:600 11px/18px "DM Sans",sans-serif;text-align:center;font-style:normal}
 .nbadge[hidden]{display:none}
 .nbell-m{display:none}
-.npop{position:fixed;left:244px;top:12px;z-index:30;width:392px;max-width:calc(100vw - 16px);max-height:min(640px,calc(100vh - 24px));display:flex;flex-direction:column;background:var(--panel);color:var(--ink);border:1px solid var(--line);border-radius:14px;box-shadow:0 12px 40px #1a0a2455;overflow:hidden;animation:nin .16s ease-out}
+.npop{position:fixed;left:8px;top:12px;z-index:30;width:392px;max-width:calc(100vw - 16px);max-height:min(640px,calc(100vh - 24px));display:flex;flex-direction:column;background:var(--panel);color:var(--ink);border:1px solid var(--line);border-radius:14px;box-shadow:0 12px 40px #1a0a2455;overflow:hidden;animation:nin .16s ease-out}
 .npop[hidden]{display:none}
 .nh{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:12px 14px;border-bottom:1px solid var(--line)}
 .nh .na{display:flex;gap:6px}
@@ -162,3 +162,39 @@ mark{background:color-mix(in srgb,var(--warm) 35%,transparent);color:inherit;bor
 .rc[hidden],.rt[hidden]{display:none}
 .how{font-size:13px;color:var(--mute);display:grid;gap:6px;margin-top:10px}
 @keyframes nin{from{transform:translateY(6px);opacity:0}}
+.shared-calendars{display:flex;align-items:center;gap:8px 16px;flex-wrap:wrap;margin:-10px 0 16px;padding:8px 12px;border:1px solid var(--line);border-radius:10px}
+.shared-calendars legend{padding:0 6px;font-size:12px;color:var(--mute)}
+.shared-calendars label{display:flex;align-items:center;gap:6px;font-size:12px;cursor:pointer}
+.shared-calendars i{width:9px;height:9px;border-radius:50%;background:var(--friend-color)}
+.shared-chip{color:var(--ink);font-weight:500;cursor:default}
+.shared-chip b{font-size:10px}
+.shared-blk{cursor:default;text-align:left;color:var(--ink)}
+.shared-blk span{overflow-wrap:anywhere}
+.shared-dy{position:absolute;top:9px;right:20px;width:9px;height:9px;border-radius:50%;border:1.6px solid var(--friend-color)}
+.shared-dy:nth-of-type(2){right:31px}.shared-dy:nth-of-type(3){right:42px}.shared-dy:nth-of-type(n+4){display:none}
+.tlh button{position:relative}
+.friend-panel{gap:12px}
+.friend-intro,.friend-empty{color:var(--mute);font-size:13px}
+.friend-message{padding:9px 12px;border-radius:8px;background:var(--hover);font-size:13px}
+.friend-error{color:#e5484d}
+.friend-add{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.friend-add form{display:flex;align-items:flex-end;gap:8px}
+.friend-add label{display:grid;gap:4px;flex:1;min-width:0;font-size:12px;color:var(--mute)}
+.friend-add .in{width:100%;min-width:0}
+.friend-invite{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px;border-radius:10px;background:var(--hover)}
+.friend-invite b,.friend-invite span{display:block}.friend-invite span{font-size:13px;color:var(--mute);font-family:monospace}
+.friends-requests,.friend-list{display:grid;gap:8px}.friends-requests h3,.friend-list h3{font-size:14px;margin:6px 0}
+.friend-request{display:flex;align-items:center;gap:8px;padding:8px 0;border-bottom:1px solid var(--line)}
+.friend-request span{flex:1;min-width:0;overflow-wrap:anywhere}
+.friend-request small{color:var(--mute)}
+.friend-card{border:1px solid var(--line);border-radius:10px;padding:12px}
+.friend-card>header{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.friend-card>header b,.friend-card>header span{display:block}.friend-card>header span{font-size:12px;color:var(--mute);margin-top:3px}
+.friend-card details{margin-top:10px;border-top:1px solid var(--line);padding-top:8px}
+.friend-card summary{cursor:pointer;font-size:13px;font-weight:600}
+.friend-privacy{color:var(--mute);font-size:12px;margin:8px 0}
+.friend-share-group{margin-top:10px}.friend-share-group h4{font-size:12px;color:var(--mute);margin-bottom:4px}
+.friend-share-group label{display:flex;align-items:center;gap:8px;padding:5px 0;font-size:13px}
+.friend-share-group label span{min-width:0;overflow-wrap:anywhere}
+.friend-share-group input{accent-color:var(--acc)}
+@media (max-width:700px){.friend-add{grid-template-columns:1fr}.friend-add form{align-items:stretch;flex-direction:column}.friend-request{flex-wrap:wrap}.friend-request span{flex-basis:100%}.friend-invite{align-items:flex-start;flex-direction:column}}

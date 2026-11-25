@@ -1,15 +1,21 @@
 // Hash router and the render loop
-import {ic} from './core/icons.js';
-import {NAV} from './core/config.js';
-import {Prefs} from './storage/prefs.js';
 import {Cloud} from './storage/cloud.js';
 import {authView} from './features/auth.js';
 import {storageStatus} from './features/settings.js';
+import {Friends} from './features/friends.js';
+import {C} from './features/calendar.js';
+import {Sch} from './features/schedule.js';
+import {homeAfter} from './features/home.js';
+import {renderNav, renderFab, renderOverlay} from './ui/shell.js';
 import {Views} from './views.js';
 
-export const Router={cur:'home',go(){const h=location.hash.slice(1);this.cur=Cloud.signedIn&&Views[h]&&h!=='auth'?h:Cloud.signedIn?'home':'auth';render()}};
-export function render(){let v=Router.cur;if(!Cloud.signedIn)v='auth';else if(v==='auth')v='home';Router.cur=v;const m=document.getElementById('main');document.body.dataset.view=v;m.innerHTML=v==='auth'?authView():Views[v]();if(Router.last!==v)m.scrollTop=0;Router.last=v;
-const btn=cls=>NAV.map(([k,l,i])=>`<button class="${cls}" data-go="${k}" ${k===v?'aria-current="page"':''} aria-label="${l}">${ic(i)}<span>${l}</span></button>`).join('');
-document.getElementById('nav').innerHTML=btn('nav');document.getElementById('tabs').innerHTML=btn('');
-const n=Prefs.get('name','');document.getElementById('av').textContent=(n[0]||'M').toUpperCase();document.getElementById('who').innerHTML=`<b style="font-weight:500">${n||'Your name'}</b><small>${Cloud.signedIn?'Cloud account':'Local profile'}</small>`;
+export const Router={cur:'home',go(){let h=location.hash.slice(1);if(h==='tasks'){Sch.tab='tasks';h='schedule'}this.cur=Cloud.signedIn&&Views[h]&&h!=='auth'?h:Cloud.signedIn?'home':'auth';render()}};
+export function render(){let v=Router.cur;if(!Cloud.signedIn)v='auth';else if(v==='auth')v='home';Router.cur=v;
+const entering=Router.last!==v,m=document.getElementById('main');
+if(entering){if(v==='calendar')C.view=C.cv||'month';else if(v==='schedule'&&Sch.tab!=='tasks')C.view=Sch.tab}
+if(v==='schedule'&&Sch.tab!=='tasks')C.view=Sch.tab;
+document.body.dataset.view=v;m.innerHTML=v==='auth'?authView():Views[v]();if(entering)m.scrollTop=0;Router.last=v;
+if(v==='friends'||v==='calendar')Friends.refresh();
+renderNav(v);renderFab(v);renderOverlay(v);
+if(v==='home')homeAfter(entering);
 if(v==='settings')storageStatus()}

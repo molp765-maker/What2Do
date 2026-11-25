@@ -1,6 +1,14 @@
 # What2Do
 Personal planner. Get in touch with past, present and future.
 
+## Design and navigation (plum theme)
+
+- Header with menu drawer, profile menu, logo and notification bell, then a scalloped band with five round tabs: Home, Calendar, Schedule, Diary, Future plans. The active tab sits in a droplet pin cut out of the band (`--px` is set in `js/ui/shell.js`).
+- Friends and Settings live behind the profile icon (and the menu drawer). Sign out is in the profile menu. The Assistant stays an honest placeholder in the drawer.
+- Home: task-status donut computed from real tasks (Completed = done, In progress = open and due today or overdue, Pending = open and due later or undated, whole percentages that add up to 100), the next three events, and open tasks filtered by priority. The ring fills from zero each time Home opens and eases when tasks change.
+- Schedule combines the Day and Week timelines with the Tasks list. `#tasks` links still work and open Schedule on Tasks.
+- Styling: `css/base.css` (tokens), `layout.css` (shell), `components.css` (shared components), `theme.css` (plum skin and new screens), `responsive.css`. Images live in `assets/images/`. There is no dark mode or theme setting.
+
 ## Diary (Phase 3)
 
 - `js/features/diary.js`: dashboard, archive, mini calendar, reader and the autosaving editor. `js/core/diary.js`: pure search, grouping and preview helpers (unit tested).
@@ -21,6 +29,12 @@ To enable it:
 4. Host the app over HTTPS, create an account from the sign-in page, and use that same account on each device. If email confirmation is enabled, confirm the signup message first.
 
 The first sign-in to an account with no cloud data asks whether to import the current device's events, tasks, and diary. Existing cloud data replaces the current device's cached copy. Signing out clears that account's cached planner data from the device but leaves the cloud copy intact. Do not use real or sensitive data until the Supabase project and its access policies are configured.
+
+## Friends and shared calendars
+
+Run the updated [`supabase/schema.sql`](./supabase/schema.sql) in the Supabase SQL Editor to enable friend requests and sharing. Friends can be added by email or invite link/code. A request must be accepted before either person can see the other's shared calendar. Each person independently chooses which of their own events, tasks, and diary entries to share with each friend; removing a friend revokes server-side access in both directions. Shared calendars can be toggled in Calendar and are read-only. Event notes/reminders and diary entry text are never sent to friends; diary sharing shows its date and title only. Account data remains private by default, and sharing access is checked by server-side functions rather than direct table access. A friend's cached calendar refreshes on the app's normal sync cycle.
+
+Email requests are in-app requests (the app does not send email). The invite link/code can be copied and sent through any channel.
 ## Notifications (Phase 4)
 
     js/notifications/

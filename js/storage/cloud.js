@@ -71,6 +71,10 @@ async function download(){
   const p=new URLSearchParams({select:'collection,record_id,payload',owner_id:'eq.'+userId()});
   return request('/rest/v1/account_data?'+p.toString(),{token:await freshToken()});
 }
+async function friendRpc(name,args={}){
+  if(!configured()||!session)throw new Error('Sign in to use friend sharing.');
+  return request('/rest/v1/rpc/'+name,{method:'POST',body:args,token:await freshToken()});
+}
 async function importLocalIfChosen(){
   const local=(await Promise.all(DATA_STORES.map(async collection=>(await DB.all(collection)).map(payload=>({collection,payload}))))).flat();
   if(!local.length)return false;
@@ -133,6 +137,13 @@ export const Cloud={
     try{await flushPending();lastError=''}catch(error){lastError='Deleted on this device. Cloud sync is waiting: '+error.message}
     changed();
   },
+  friendDashboard(){return friendRpc('w2d_friend_dashboard')},
+  requestFriendByEmail(email){return friendRpc('w2d_send_friend_request_email',{p_email:email})},
+  requestFriendByCode(code){return friendRpc('w2d_send_friend_request_code',{p_code:code})},
+  respondFriendRequest(requestId,accept){return friendRpc('w2d_respond_friend_request',{p_request_id:requestId,p_accept:accept})},
+  removeFriend(friendId){return friendRpc('w2d_remove_friend',{p_friend_id:friendId})},
+  setSharedItem(friendId,collection,recordId,shared){return friendRpc('w2d_set_shared_item',{p_friend_id:friendId,p_collection:collection,p_record_id:recordId,p_shared:shared})},
+  friendSchedule(friendId){return friendRpc('w2d_friend_schedule',{p_friend_id:friendId})},
   async sync(){
     if(!configured()||!session)return;
     try{

@@ -4,23 +4,29 @@
 <meta charset="utf-8">
 <title>What 2 Do</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="theme-color" content="#2a0a3a">
+<meta name="theme-color" content="#8a2a78">
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="icon" href="assets/icons/icon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Fraunces:opsz,wght@9..144,500;9..144,600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Poppins:wght@400;500;600;700&display=swap">
 <link rel="stylesheet" href="css/base.css">
 <link rel="stylesheet" href="css/layout.css">
 <link rel="stylesheet" href="css/components.css">
+<link rel="stylesheet" href="css/theme.css">
 <link rel="stylesheet" href="css/responsive.css">
 </head>
 <body>
 <div class="app">
-<aside class="side"><div class="logo"><i>2</i><b>What 2 Do</b></div><button class="nav nbell" data-bell aria-haspopup="dialog" aria-expanded="false" aria-label="Notifications"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 17h12l-1.5-2V11a4.5 4.5 0 00-9 0v4zM10 20a2 2 0 004 0"/></svg><span>Notifications</span><i class="nbadge" hidden></i></button><nav id="nav" aria-label="Main"></nav>
-<div class="sep"></div><div class="me"><span class="av" id="av">M</span><div id="who"></div></div></aside>
+<header class="hd">
+<button class="hd-menu" data-drawer aria-label="Menu" aria-haspopup="menu" aria-expanded="false"><svg viewBox="0 0 43 23" aria-hidden="true"><path d="M1.5 2h40M1.5 11.5h40M1.5 21h40"/></svg></button>
+<button class="hd-av" data-profile aria-label="Profile menu" aria-haspopup="menu" aria-expanded="false"><svg viewBox="0 0 34 34" aria-hidden="true"><circle cx="17" cy="13" r="5"/><path d="M7 27c1-6 5-8 10-8s9 2 10 8"/></svg></button>
+<img class="hd-logo" src="assets/images/logo.png" alt="What 2 Do" width="170" height="39">
+<button class="nbell hd-bell" data-bell aria-haspopup="dialog" aria-expanded="false" aria-label="Notifications"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a6 6 0 00-6 6v4l-2 3h16l-2-3V9a6 6 0 00-6-6zM10 19a2 2 0 004 0z"/></svg><i class="nbadge" hidden></i></button>
+</header>
+<div class="band"><div class="bbg"></div><div class="wv"></div><nav class="bnav" id="nav" aria-label="Main"></nav></div>
 <main class="main" id="main" tabindex="-1"></main>
-<nav class="tabs" id="tabs" aria-label="Main"></nav>
+<button class="fab" id="fab" hidden aria-label="Add"></button>
 </div>
-<button class="nbell nbell-m" data-bell aria-haspopup="dialog" aria-expanded="false" aria-label="Notifications"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 17h12l-1.5-2V11a4.5 4.5 0 00-9 0v4zM10 20a2 2 0 004 0"/></svg><i class="nbadge" hidden></i></button>
+<div id="ov"></div>
 <div id="npop" class="npop" role="dialog" aria-label="Notifications" hidden></div>
 <dialog id="dlg" aria-label="Edit"></dialog>
 <noscript>What 2 Do needs JavaScript.</noscript>

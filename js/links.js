@@ -1,6 +1,7 @@
 // Wiring: where a notification should take the user. Lives at the top level because it knows about several features.
 import {C, evDlg} from './features/calendar.js';
 import {tkDlg} from './features/tasks.js';
+import {Sch} from './features/schedule.js';
 import {writeFor} from './features/diary.js';
 import {S} from './storage/store.js';
 import {emit} from './core/bus.js';
@@ -14,5 +15,5 @@ if(!S.events.some(e=>e.id===r.id))return emit('notify:info','That event no longe
 C.view='day';C.d=pd(r.date);go('calendar');evDlg(r.id,r.date)}
 else if(r.type==='task'){
 if(!S.tasks.some(t=>t.id===r.id))return emit('notify:info','That task no longer exists.');
-go('tasks');tkDlg(r.id)}
+go('schedule');Sch.tab='tasks';emit('render');tkDlg(r.id)}
 else if(r.type==='diary')writeFor(r.date)}

@@ -7,7 +7,7 @@ let mode='signin',email='';
 export function authView(){
   const signup=mode==='signup',configured=Cloud.configured;
   return `<div class="auth-page"><div class="auth-shell">
-<div class="auth-brand"><i>2</i><b>What 2 Do</b></div>
+<img class="auth-logo" src="assets/images/logo.png" alt="What 2 Do">
 <section class="auth-card" aria-labelledby="auth-title">
 <p class="auth-eyebrow">${signup?'GET STARTED':'WELCOME BACK'}</p>
 <h1 id="auth-title">${signup?'Create your account':'Sign in'}</h1>

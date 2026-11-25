@@ -21,6 +21,7 @@ test('signing in loads the signed-in account data from the cloud', async () => {
     calls.push({url:String(url),options});
     if(String(url).includes('/auth/v1/token?grant_type=password'))return {ok:true,status:200,text:async()=>JSON.stringify({access_token:'access-token',refresh_token:'refresh-token',expires_in:3600,user})};
     if(String(url).includes('/auth/v1/logout'))return {ok:true,status:204,text:async()=>''};
+    if(String(url).includes('/rest/v1/rpc/w2d_friend_dashboard'))return {ok:true,status:200,text:async()=>JSON.stringify({invite_code:'ABCD',friends:[],incoming:[],outgoing:[]})};
     if(String(url).includes('/rest/v1/account_data?'))return {ok:true,status:200,text:async()=>JSON.stringify(remote)};
     throw new Error('Unexpected request: '+url);
   };
@@ -29,9 +30,12 @@ test('signing in loads the signed-in account data from the cloud', async () => {
     assert.equal(Cloud.signedIn,true);
     assert.equal(Cloud.email,user.email);
     assert.deepEqual(local.tasks,remote.map(x=>x.payload));
+    assert.equal((await Cloud.friendDashboard()).invite_code,'ABCD');
     const dataRequest=calls.find(x=>x.url.includes('/rest/v1/account_data?'));
     assert.match(dataRequest.url,/owner_id=eq\.mark-user/);
     assert.equal(dataRequest.options.headers.Authorization,'Bearer access-token');
+    const friendsRequest=calls.find(x=>x.url.includes('/rest/v1/rpc/w2d_friend_dashboard'));
+    assert.equal(friendsRequest.options.headers.Authorization,'Bearer access-token');
   }finally{
     try{if(Cloud.signedIn)await Cloud.signOut()}catch{}
     Object.assign(CLOUD_CONFIG,oldConfig);

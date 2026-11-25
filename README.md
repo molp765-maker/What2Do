@@ -25,7 +25,7 @@ To enable it:
 
 1. Create a Supabase project.
 2. Run [`supabase/schema.sql`](./supabase/schema.sql) in the project's SQL Editor.
-3. Copy the project URL and **publishable/anon key** into [`js/core/cloud-config.js`](./js/core/cloud-config.js). Never put a `service_role` key in browser code.
+3. Copy [`js/core/cloud-config.example.js`](./js/core/cloud-config.example.js) to `js/core/cloud-config.local.js` and fill in the project URL and **publishable/anon key**. That file is git-ignored, so your keys stay off GitHub. Never put a `service_role` / `sb_secret_` key in browser code.
 4. Host the app over HTTPS, create an account from the sign-in page, and use that same account on each device. If email confirmation is enabled, confirm the signup message first.
 
 The first sign-in to an account with no cloud data asks whether to import the current device's events, tasks, and diary. Existing cloud data replaces the current device's cached copy. Signing out clears that account's cached planner data from the device but leaves the cloud copy intact. Do not use real or sensitive data until the Supabase project and its access policies are configured.

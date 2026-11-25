@@ -18,7 +18,7 @@ export function authView(){
 <button class="btn pri auth-submit" type="submit" name="cloud-action" value="${signup?'signup':'signin'}" ${configured?'':'disabled'}>${signup?'Create account':'Sign in'}</button>
 <div class="err auth-status" data-cloud-status role="status">${esc(Cloud.status)}</div>
 </form>
-${configured?'':`<div class="auth-unavailable" role="status"><b>Accounts aren’t connected yet</b><span>Add the Supabase project URL and publishable key in <code>js/core/cloud-config.js</code> to enable sign-in.</span></div>`}
+${configured?'':`<div class="auth-unavailable" role="status"><b>Accounts aren’t connected yet</b><span>Copy <code>js/core/cloud-config.example.js</code> to <code>js/core/cloud-config.local.js</code> and add your Supabase project URL and publishable key to enable sign-in.</span></div>`}
 <p class="auth-switch">${signup?'Already have an account?':'New to What 2 Do?'} <button type="button" data-auth-mode="${signup?'signin':'signup'}">${signup?'Sign in':'Create an account'}</button></p>
 </section>
 <p class="auth-note">Your account keeps your events, tasks, and diary private and synced.</p>

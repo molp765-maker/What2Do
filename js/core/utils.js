@@ -9,5 +9,6 @@ export const addD=(d,n)=>{const x=new Date(d);x.setDate(x.getDate()+n);return x}
 export const TODAY=ymd(today),uid=()=>Date.now().toString(36)+Math.random().toString(36).slice(2,6);
 export const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 export const hm=s=>{const[a,b]=s.split(':');return +a+b/60};
-export const t12=s=>{const[a,b]=s.split(':'),h=+a;return `${(h+11)%12+1}${b==='00'?'':':'+b}${h>=12?'pm':'am'}`};
+// Only formats real HH:MM text (friends' shared data is untrusted); anything else gives ''
+export const t12=s=>{const m=/^(\d{1,2}):(\d{2})$/.exec(typeof s==='string'?s:'');if(!m)return '';const b=m[2],h=+m[1];return `${(h+11)%12+1}${b==='00'?'':':'+b}${h>=12?'pm':'am'}`};
 export const dShort=ds=>pd(ds).toLocaleDateString('en-NZ',{weekday:'short',day:'numeric',month:'short'});

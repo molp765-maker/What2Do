@@ -5,9 +5,11 @@ import {DB} from '../storage/db.js';
 import {card} from '../ui/components.js';
 import {notifySettingsHTML} from '../notifications/settings-view.js';
 import {Cloud} from '../storage/cloud.js';
+import {editorHTML} from './dashboard.js';
 
 export function settingsView(){return `<div class="page"><h1>Settings</h1><p class="sub">Your account syncs between devices.</p><div class="grid">${card('Account','w','',Cloud.view())}${card('Profile','w','',`
 <div class="row"><div><b>Your name</b><span>Used in your greeting.</span></div><input class="in" id="name" value="${Prefs.get('name','').replace(/"/g,'&quot;')}" placeholder="Name" aria-label="Your name"></div>`)}
+${card('Dashboard','w','',`<p class="dash-intro">Choose what Home shows first.</p>${editorHTML()}`)}
 ${notifySettingsHTML()}
 ${card('Local storage','w','',`<div class="row"><div><b>Database</b><span id="dbs">Checking…</span></div></div><div class="row"><div><b>Records</b><span id="dbc">Checking…</span></div></div>`)}</div></div>`}
 export async function storageStatus(){const s=document.getElementById('dbs'),c=document.getElementById('dbc');

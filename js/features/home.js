@@ -5,6 +5,8 @@ import {Prefs} from '../storage/prefs.js';
 import {S, evOn} from '../storage/store.js';
 import {errCard} from '../ui/components.js';
 import {tkRow} from './tasks.js';
+import {getLayout} from './dashboard.js';
+import {todayWidget, plansWidget, diaryWidget, friendsWidget} from './widgets.js';
 
 export const H={pf:1};
 export const PN={1:['Urgent','#e5312f'],2:['Important','#c98024'],3:['Low','#7b6a86']};
@@ -30,10 +32,24 @@ if(a.length)return a.map(tkRow).join('');
 const sub={1:'Nothing needs you right now.',2:'Nothing important is waiting.',3:'No low priority tasks.'}[H.pf];
 return `<div class="h-empty"><b>No ${PN[H.pf][0].toLowerCase()} tasks</b><span>${sub}</span></div>`}
 
-export function homeView(){const n=Prefs.get('name',''),D=dnData(),ne=nextEv();
-return `<div class="page home"><h1 class="h-hello">Kia Ora${n?', '+esc(n):''}!</h1>${S.err?errCard():''}
-<div class="h-gr"><section class="card h-donut-card" aria-label="Task status"><div class="h-dt">${today.toLocaleDateString('en-NZ',{weekday:'short',day:'numeric',month:'short'})}</div>${donut(D)}${legend(D)}</section>${tile(ne[0],0)}${tile(ne[1],1)}${tile(ne[2],1)}</div>
-<div class="h-need"><h2>You need to do something!</h2><div class="h-prow"><div class="seg3" role="radiogroup" aria-label="Task priority" style="--i:${H.pf-1}"><i class="seg3-pill"></i>${[1,2,3].map(p=>`<button role="radio" aria-checked="${H.pf===p}" tabindex="${H.pf===p?0:-1}" data-pf="${p}" style="--c:${PN[p][1]}">${PN[p][0]}<em>${openP(p).length}</em></button>`).join('')}</div><button class="ntb" data-newtk aria-label="New task"><span>New task</span><i>${ic('plus')}</i></button></div><div class="card h-list" id="hl" aria-live="polite">${listHTML()}</div></div></div>`}
+// Each Home widget; overview + nextup share the original side-by-side grid when they are next to each other
+const overviewW=()=>{const D=dnData();return `<section class="card h-donut-card" aria-label="Task status"><div class="h-dt">${today.toLocaleDateString('en-NZ',{weekday:'short',day:'numeric',month:'short'})}</div>${donut(D)}${legend(D)}</section>`};
+const nextupW=()=>{const ne=nextEv();return `${tile(ne[0],0)}${tile(ne[1],1)}${tile(ne[2],1)}`};
+const EXTRA={today:todayWidget,plans:plansWidget,diary:diaryWidget,friends:friendsWidget};
+export function homeBody(ids){
+if(!ids.length)return `<div class="card h-empty dash-none"><b>Your Home is empty</b><span>Choose what to show here.</span><button class="btn pri" data-dash-edit>Customize</button></div>`;
+let out='';for(let i=0;i<ids.length;i++){const id=ids[i];
+if(id==='overview'&&ids[i+1]==='nextup'){out+=`<div class="h-gr">${overviewW()}${nextupW()}</div>`;i++}
+else if(id==='overview')out+=`<div class="h-gr h-gr-solo solo-ov">${overviewW()}</div>`;
+else if(id==='nextup')out+=`<div class="h-gr h-gr-solo solo-nx">${nextupW()}</div>`;
+else if(id==='todo')out+=todoW();
+else if(EXTRA[id])out+=EXTRA[id]()}
+return out}
+
+export function homeView(){const n=Prefs.get('name','');
+return `<div class="page home"><div class="h-top"><h1 class="h-hello">Kia Ora${n?', '+esc(n):''}!</h1><button class="btn h-edit" data-dash-edit aria-label="Customize Home">Edit</button></div>${S.err?errCard():''}${homeBody(getLayout())}</div>`}
+
+const todoW=()=>`<div class="h-need"><h2>You need to do something!</h2><div class="h-prow"><div class="seg3" role="radiogroup" aria-label="Task priority" style="--i:${H.pf-1}"><i class="seg3-pill"></i>${[1,2,3].map(p=>`<button role="radio" aria-checked="${H.pf===p}" tabindex="${H.pf===p?0:-1}" data-pf="${p}" style="--c:${PN[p][1]}">${PN[p][0]}<em>${openP(p).length}</em></button>`).join('')}</div><button class="ntb" data-newtk aria-label="New task"><span>New task</span><i>${ic('plus')}</i></button></div><div class="card h-list" id="hl" aria-live="polite">${listHTML()}</div></div>`;
 
 export function updateHome(){const seg=document.querySelector('.seg3');if(!seg)return;seg.style.setProperty('--i',H.pf-1);
 seg.querySelectorAll('button').forEach((b,i)=>{b.setAttribute('aria-checked',i===H.pf-1);b.tabIndex=i===H.pf-1?0:-1;b.querySelector('em').textContent=openP(i+1).length});

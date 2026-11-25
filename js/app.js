@@ -12,6 +12,7 @@ import {startScheduler} from './notifications/scheduler.js';
 import {openRelated} from './links.js';
 import {Friends, bindFriends} from './features/friends.js';
 import {bindHome} from './features/home.js';
+import {bindDashboard} from './features/dashboard.js';
 import {bindShell} from './ui/shell.js';
 
 on('render',render);
@@ -22,6 +23,7 @@ on('cloud:data',()=>{S.events=[];S.tasks=[];S.diary=[];S.load().then(()=>{update
 on('open-related',openRelated);
 bindEvents();
 bindHome();
+bindDashboard();
 bindShell();
 bindDiary();
 bindCenter();

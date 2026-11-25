@@ -12,3 +12,9 @@ test('donut buckets come from real task data',()=>{
   assert.ok(Math.abs(D.seg.reduce((s,g)=>s+g.f,0)-1)<1e-9);
 });
 test('empty task list gives zeros',()=>{const D=dnData([],'2026-01-05');assert.equal(D.tot,0);assert.ok(D.seg.every(g=>g.p===0&&g.f===0))});
+
+import {homeBody} from '../js/features/home.js';
+test('default layout keeps the current Home sections in order',()=>{const h=homeBody(['overview','nextup','todo']);
+  assert.ok(h.indexOf('h-donut-card')<h.indexOf('h-tile')&&h.indexOf('h-tile')<h.indexOf('h-need'))});
+test('order follows the layout',()=>{const h=homeBody(['todo','overview']);assert.ok(h.indexOf('h-need')<h.indexOf('h-donut-card'));assert.doesNotMatch(h,/h-tile/)});
+test('empty layout shows a Customize button',()=>{const h=homeBody([]);assert.match(h,/data-dash-edit/);assert.match(h,/Customize/)});

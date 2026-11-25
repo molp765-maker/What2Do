@@ -103,6 +103,8 @@ p.empty.dy-none{color:var(--lilac)}
 /* Home */
 .home{display:block}
 .h-hello{margin-bottom:12px}
+.h-top{display:flex;align-items:center;justify-content:space-between;gap:12px}.h-top .h-hello{min-width:0}
+.h-edit{flex:none;margin-bottom:12px}
 .h-gr{display:grid;grid-template-columns:minmax(0,2.1fr) minmax(0,.7fr) minmax(0,.7fr);grid-template-rows:78px 78px;gap:8px}
 .h-gr>.h-donut-card{grid-column:1;grid-row:1/3;padding:16px;display:grid;grid-template-columns:96px 1fr;column-gap:10px;position:relative;align-content:start}
 .h-dt{position:absolute;top:14px;right:16px;font:600 11px/1.2 "Poppins",sans-serif;letter-spacing:.06em;color:var(--plum)}
@@ -185,14 +187,18 @@ button.h-tile:hover{background:#f3e9c4}
 .page{padding:34px max(40px,calc((100vw - 1000px)/2)) 60px;max-width:none}
 .page.wide{padding-left:max(40px,calc((100vw - 1240px)/2));padding-right:max(40px,calc((100vw - 1240px)/2))}
 h1{font-size:26px}
-.home{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);column-gap:32px;align-content:start}
-.home .h-hello{grid-column:1/-1}
-.home .h-gr{grid-column:1;grid-template-columns:repeat(3,minmax(0,1fr));grid-template-rows:auto 104px}
+.home{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);column-gap:32px;row-gap:24px;align-content:start;align-items:start}
+.home .h-top,.home .dash-none,.home>.card.w,.home .dash-w{grid-column:1/-1}
+.home .dash-w{margin-top:0}
+.home .h-top .h-hello,.home .h-edit{margin-bottom:-12px}
+.home .h-gr{grid-template-columns:repeat(3,minmax(0,1fr));grid-template-rows:auto 104px}
+.home .h-gr.solo-ov{grid-template-columns:1fr;grid-template-rows:auto}
+.home .h-gr.solo-nx{grid-template-rows:104px}
 .home .h-gr>.h-donut-card{grid-row:1;grid-column:1/-1;padding:22px 28px;grid-template-columns:104px 1fr;column-gap:28px}
 .home .h-dn{width:104px;height:104px;margin-top:0}
 .home .h-tile.wide{grid-column:auto}.home .h-tile{padding:12px 14px}
 .home .h-lg{margin-top:26px}
-.home .h-need{grid-column:2;grid-row:2;margin-top:0}
+.home .h-need{margin-top:0}
 .npop{left:auto;right:16px;top:calc(114px + env(safe-area-inset-top,0px));width:400px}
 .fab{right:36px;bottom:30px}
 .page.sch-page,.page.plans-page{max-width:none}
@@ -211,3 +217,31 @@ dialog{width:min(520px,92vw)}
 body[data-view="auth"]{background-position:center bottom}
 .btn.dng{background:#f4d5d0;color:#8a1f18}.btn.dng:hover{background:#efc4bd}
 .friend-cta{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:0 0 14px;padding:8px 8px 8px 16px;border-radius:16px;background:var(--panel);color:var(--mute);font-size:13px}
+/* Customizable Home */
+.h-gr.solo-ov{grid-template-columns:1fr;grid-template-rows:auto}
+.h-gr.solo-ov>.h-donut-card{grid-row:auto}
+.h-gr.solo-nx{grid-template-columns:repeat(3,minmax(0,1fr));grid-template-rows:78px}
+.h-gr.solo-nx .h-tile.wide{grid-column:auto}
+.h-gr+.h-gr,.h-need+.h-gr{margin-top:14px}
+.dash-w{margin-top:14px;padding:16px}
+.dash-w h2{margin:0 0 6px}
+.dash-w .plan-list{padding:0}
+.dash-w .h-empty{padding:18px 8px}
+.dash-w .friend-cta{margin:0;padding:0;background:none}
+.dash-more{display:flex;justify-content:flex-end;margin-top:8px}
+.dash-dy{display:flex;align-items:center;gap:10px;width:100%;text-align:left;padding:6px 0}
+.dash-dy .dy-mo{font-size:22px}.dash-dy b{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.dash-dy small{color:var(--mute);font-size:12px}
+.dash-none{margin-top:14px}
+.dash-intro{color:var(--mute);font-size:13px;margin:0 0 8px}
+.dash-editor{display:grid}
+.dash-row{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:44px}
+.dash-row+.dash-row{border-top:1px solid var(--line)}
+.dash-row label{display:flex;align-items:center;gap:10px;flex:1;min-height:44px;cursor:pointer}
+.dash-row input{width:18px;height:18px;accent-color:var(--magenta)}
+.dash-row.off span{color:var(--mute)}
+.dash-mv{display:flex;gap:6px}
+.dash-mv .btn{width:36px;padding:0}
+.dash-mv .btn:disabled{opacity:.35;cursor:default}
+.dash-foot{display:flex;justify-content:flex-end;padding-top:10px;border-top:1px solid var(--line)}
+.dash-dlg h3{margin:0 0 2px}.dash-dlg .sub{color:var(--mute);margin:0 0 10px}
+.dash-dlg .acts{display:flex;justify-content:flex-end;margin-top:14px}

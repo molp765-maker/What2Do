@@ -11,3 +11,8 @@ test('t12 formats 24-hour times', () => {
   assert.equal(t12('00:00'), '12am');
 });
 test('esc neutralises markup', () => assert.equal(esc('<b>"x"</b>'), '&lt;b&gt;&quot;x&quot;&lt;/b&gt;'));
+
+import {t12 as t12safe} from '../js/core/utils.js';
+test('t12 never passes markup through and survives bad input',()=>{
+  assert.equal(t12safe('13:05'),'1:05pm');assert.equal(t12safe('09:00'),'9am');
+  assert.equal(t12safe('10:<img src=x onerror=alert(1)>'),'');assert.equal(t12safe(7),'');assert.equal(t12safe(undefined),'')});

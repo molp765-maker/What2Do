@@ -210,3 +210,4 @@ dialog{width:min(520px,92vw)}
 @media (max-width:700px){.seg button{padding:7px 11px}.tools{gap:6px}}
 body[data-view="auth"]{background-position:center bottom}
 .btn.dng{background:#f4d5d0;color:#8a1f18}.btn.dng:hover{background:#efc4bd}
+.friend-cta{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:0 0 14px;padding:8px 8px 8px 16px;border-radius:16px;background:var(--panel);color:var(--mute);font-size:13px}

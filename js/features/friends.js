@@ -33,7 +33,7 @@ export const Friends={
         this.calendars=Object.fromEntries(schedules.map(x=>[x.id,x.records||[]]));
         this.friends=this.friends.map(friend=>({...friend,records:this.calendars[friend.id]||[]}));
         this.error='';
-      }catch(error){this.error=error.message}
+      }catch(error){this.error=error.code==='friends-unavailable'?'':error.message}
       finally{loading=null;emit('friends:changed')}
     })();
     return loading;
@@ -54,7 +54,7 @@ export const Friends={
   },
   calendarControls(){
     const message=this.error?`<p class="friend-message friend-error" role="alert">${esc(this.error)}</p>`:this.notice?`<p class="friend-message" role="status">${esc(this.notice)}</p>`:'';
-    if(!this.friends.length)return message;
+    if(!this.friends.length)return message||`<div class="friend-cta"><span>See friends’ schedules here</span><button class="btn" data-go="friends">Add friend</button></div>`;
     return `${message}<fieldset class="shared-calendars"><legend>Shared calendars</legend>${this.friends.map(f=>`<label><input type="checkbox" data-shared-calendar="${esc(f.id)}" ${this.visible.has(f.id)?'checked':''}><i style="--friend-color:${this.color(f.id)}"></i>${esc(f.email)}</label>`).join('')}</fieldset>`;
   },
   settingsHTML(){

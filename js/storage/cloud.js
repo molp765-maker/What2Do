@@ -73,7 +73,12 @@ async function download(){
 }
 async function friendRpc(name,args={}){
   if(!configured()||!session)throw new Error('Sign in to use friend sharing.');
-  return request('/rest/v1/rpc/'+name,{method:'POST',body:args,token:await freshToken()});
+  try{return await request('/rest/v1/rpc/'+name,{method:'POST',body:args,token:await freshToken()})}
+  catch(error){
+    // The friends SQL hasn't been applied to this Supabase project yet: hide the raw PostgREST message.
+    if(/could not find the function|PGRST202/i.test(error.message||'')){const e=new Error('Friend sharing isn’t available yet. Please try again later.');e.code='friends-unavailable';throw e}
+    throw error;
+  }
 }
 async function importLocalIfChosen(){
   const local=(await Promise.all(DATA_STORES.map(async collection=>(await DB.all(collection)).map(payload=>({collection,payload}))))).flat();
